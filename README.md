@@ -10,10 +10,12 @@ This project describes how to use GRAKN to track personal data:
 ## Project structure
 ### /api
 * Clone the [GDPR API repo](https://github.com/idealley/gdpr-grakn-api) in this folder (or anywhere else...)
+
 Node.js api that is used as the central point and lingua franca for all systems to communicate with GRAKN.AI.
 The API uses a mongo database to manage API users, but that could be anything.
 ### /dashboard
 * Clone the [GDPR Dashboard repo](https://github.com/idealley/gdpr-dashboard) in this folder (or anywhere else...)
+
 Vuejs Dashboard that is used to display users data. That is the visible part of GDPR for users
 ### /data
 Test data to load in GRAKN.AI
