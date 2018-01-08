@@ -1,0 +1,5 @@
+grakn:
+  container_name: GRAKN
+  image: graknlabs/grakn
+  restart: always
+  volumes: ~/db:/grakn/db/

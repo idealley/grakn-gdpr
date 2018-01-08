@@ -1,0 +1,151 @@
+define
+
+# Entities
+anonymous sub entity
+    has timestamp
+    
+    plays incognito;
+
+person sub entity
+    has timestamp
+    has type
+    has identifier
+
+    plays identified
+    plays imported
+    plays importer
+    plays exported
+    plays exporter
+    plays owner;
+
+property sub entity is-abstract
+    has value
+    plays owned
+    plays demand
+    plays authorizer
+    plays exported
+    plays imported
+    plays revoker
+    plays withdrawer;
+
+last-name sub property;
+first-name sub property;
+email sub property;
+
+address sub property
+    has value;
+city sub address;
+zip sub address;
+street1 sub address;
+street2 sub address;
+street3 sub address;
+
+system sub entity
+    has value
+    has icon
+    
+    plays importer
+    plays exporter
+    plays requester
+    plays authorized
+    plays exported-to
+    plays imported-to;
+
+authorization sub entity
+    has name
+    has description
+    has timestamp
+    has expiration-date
+    
+    plays needed    
+    plays requisite
+    plays revoked
+    plays withdrawn;
+
+# Resources
+value sub attribute datatype string;
+icon sub attribute datatype string;
+name sub attribute datatype string;
+description sub attribute datatype string;
+timestamp sub attribute datatype long;
+expiration-date sub attribute datatype date;
+type sub attribute datatype string;
+identifier sub attribute datatype long;
+
+# Relations
+
+## Attributes belong to a person
+belongs sub relationship
+    relates owner
+    relates owned;
+
+## match an anonymous person with a real one
+identifies sub relationship
+    has timestamp
+
+    relates incognito
+    relates identified;
+
+## A system requires a property through an authorization
+## This is usefull as a system can be quired and display
+## all the properties it needs to work.
+requires sub relationship
+    relates requester
+    relates requisite;
+
+## Attributes (email, first-name, etc.) demand an
+## authorizaiton to be used by systems
+needs sub relationship
+    relates demand
+    relates needed;
+
+## relation beteween an attribute and a system
+
+action sub relationship is-abstract
+    has timestamp;
+
+import sub action
+    relates imported
+    relates importer
+    relates imported-to;
+
+export sub action
+    relates exported
+    relates exporter
+    relates exported-to;
+
+revoke sub action
+    relates revoked
+    relates revoker;
+
+## relations used by inferences
+authorizes sub relationship
+    relates authorized
+    relates authorizer;
+
+withdraws sub relationship
+    relates withdrawn
+    relates withdrawer;
+
+# Roles
+owner sub role;
+owned sub role;
+requester sub role;
+requisite sub role;
+demand sub role;
+needed sub role;
+incognito sub role;
+identified sub role;
+authorized sub role;
+authorizer sub role;
+imported sub role;
+importer sub role;
+imported-to sub role;
+exported sub role;
+exporter sub role;
+exported-to sub role;
+revoked sub role;
+revoker sub role;
+withdrawn sub role;
+withdrawer sub role;
+

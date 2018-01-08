@@ -1,0 +1,17 @@
+define
+
+is-authorized sub rule,
+when {
+    (demand: $a, needed: $b) isa needs;
+    (requisite: $b, requester: $c ) isa requires;
+} then {
+    (authorizer: $a, authorized: $c) isa authorizes;
+};
+
+is-revoked sub rule,
+when {
+    (revoker:$a, revoked:$b) isa revoke;
+    (requisite:$b, requester: $c) isa requires;
+} then {
+    (withdrawer:$a, withdrawn:$c) isa withdraws;
+};
